@@ -1,6 +1,12 @@
-# FlexLayoutApp
+# angular-demo
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.7.3.
+基于angular5 + primeng + material2简单脚手架项目
+
+支持多页签
+
+封装接口调用，页面只需配置api即可完成曾删改查
+
+已实现登录功能，并通过权限认证限制动态模块加载
 
 ## Development server
 
