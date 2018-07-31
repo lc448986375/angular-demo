@@ -1,60 +1,16 @@
 <div class="ui-inputgroup">
     <span class="ui-inputgroup-label">{{label}}</span>
-    <app-combobox [dataProvider]="operatorGroup" [(ngModel)]="operator" [style]="{'width':'120px'}"></app-combobox>
+    <app-combobox [dataProvider]="operatorGroup" [(ngModel)]="operator" [style]="{'width':'110px'}"></app-combobox>
 
-    <ng-template *ngIf="type == TYPE_STRING">
-        <input type="text" pInputText [(ngModel)]="value"/>
-    </ng-template>
+    <input type="text" pInputText [(ngModel)]="value" *ngIf="type == TYPE_STRING"/>
 
-    <ng-template *ngIf="type == TYPE_COMBO">
-        <app-combobox [dataProvider]="dataProvider" [(ngModel)]="value"></app-combobox>
-    </ng-template>
+    <app-combobox [dataProvider]="dataProvider" [(ngModel)]="value" *ngIf="type == TYPE_COMBO"></app-combobox>
 
-    <ng-template *ngIf="type == TYPE_CODE">
-        <app-autocomplete [url]="url" [(ngModel)]="value"></app-autocomplete>
-    </ng-template>
+    <app-autocomplete [url]="url" [(ngModel)]="value" *ngIf="type == TYPE_CODE"></app-autocomplete>
 
-    <ng-template *ngIf="type == TYPE_AMOUNT">
-        <app-amount-input [(ngModel)]="value"></app-amount-input>
-        <app-amount-input [(ngModel)]="value2" *ngIf="showValue2"></app-amount-input>
-    </ng-template>
+    <app-amount-input [(ngModel)]="value" *ngIf="type == TYPE_AMOUNT"></app-amount-input>
+    <app-amount-input [(ngModel)]="value2" *ngIf="type == TYPE_AMOUNT &&showValue2"></app-amount-input>
 
-    <ng-template *ngIf="type == TYPE_DATE">
-        <app-date-input [(ngModel)]="value"></app-date-input>
-        <app-date-input [(ngModel)]="value2" *ngIf="showValue2"></app-date-input>
-    </ng-template>
+    <app-date-input [(ngModel)]="value" *ngIf="type == TYPE_DATE"></app-date-input>
+    <app-date-input [(ngModel)]="value2" *ngIf="type == TYPE_DATE && showValue2"></app-date-input>
 </div>
-
-<!--
-<div class="ui-inputgroup" *ngIf="type == TYPE_STRING">
-    <span class="ui-inputgroup-label">{{label}}</span>
-    <app-combobox [dataProvider]="operatorGroup" [(ngModel)]="operator" [style]="{'width':'120px'}"></app-combobox>
-    <input type="text" pInputText [(ngModel)]="value"/>
-</div>
-
-<div class="ui-inputgroup" *ngIf="type == TYPE_COMBO">
-    <span class="ui-inputgroup-label">{{label}}</span>
-    <app-combobox [dataProvider]="operatorGroup" [(ngModel)]="operator" [style]="{'width':'120px'}"></app-combobox>
-    <app-combobox [dataProvider]="dataProvider" [(ngModel)]="value"></app-combobox>
-</div>
-
-<div class="ui-inputgroup" *ngIf="type == TYPE_CODE">
-    <span class="ui-inputgroup-label">{{label}}</span>
-    <app-combobox [dataProvider]="operatorGroup" [(ngModel)]="operator" [style]="{'width':'120px'}"></app-combobox>
-    <app-autocomplete [url]="url" [(ngModel)]="value"></app-autocomplete>
-</div>
-
-<div class="ui-inputgroup" *ngIf="type == TYPE_AMOUNT">
-    <span class="ui-inputgroup-label">{{label}}</span>
-    <app-combobox [dataProvider]="operatorGroup" [(ngModel)]="operator" [style]="{'width':'120px'}"></app-combobox>
-    <app-amount-input [(ngModel)]="value"></app-amount-input>
-    <app-amount-input [(ngModel)]="value2" *ngIf="showValue2"></app-amount-input>
-</div>
-
-<div class="ui-inputgroup" *ngIf="type == TYPE_DATE">
-    <span class="ui-inputgroup-label">{{label}}</span>
-    <app-combobox [dataProvider]="operatorGroup" [(ngModel)]="operator" [style]="{'width':'120px'}"></app-combobox>
-    <app-date-input [(ngModel)]="value"></app-date-input>
-    <app-date-input [(ngModel)]="value2" *ngIf="showValue2"></app-date-input>
-</div>
--->
