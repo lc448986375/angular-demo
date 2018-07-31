@@ -1,0 +1,109 @@
+<app-base-page-toolbar (onSearch)="search()" (onSave)="save($event)"></app-base-page-toolbar>
+<p-tabView [activeIndex]="tabIndex" (onChange)="tabViewChange($event)">
+    <p-tabPanel header="{{'tab.search' | translate}}">
+        <p-fieldset legend="{{'tab.search-condition' | translate}}" [toggleable]="true" [styleClass]="'search-condition'" [collapsed]="searchFieldSetCollapsed" (collapsedChange)="searchCollapsedChange($event)">
+            <div class="ui-g ui-fluid">
+                <div class="ui-g-12 ui-md-6">
+                    <app-search-input [type]="'string'" label="{{'cpm.counterpartyCd' | translate}}" [(ngModel)]="searchCodition['counterpartyCd']"></app-search-input>
+                </div>
+                <div class="ui-g-12 ui-md-6">
+                        <app-search-input [type]="'string'" label="{{'cpm.counterpartyNm' | translate}}" [(ngModel)]="searchCodition['counterpartyNm']"></app-search-input>
+                </div>
+            </div>
+            <div class="ui-g ui-fluid">
+                <div class="ui-g-12 ui-md-6">
+                    <app-search-input [type]="'combo'" label="{{'cpm.status' | translate}}" [dataProvider]="status" [(ngModel)]="searchCodition['status']"></app-search-input>
+                </div>
+                <div class="ui-g-12 ui-md-6">
+                    <app-search-input [type]="'amount'" label="{{'cpm.amount' | translate}}" [(ngModel)]="searchCodition['amount']"></app-search-input>
+                </div>
+            </div>
+            <div class="ui-g ui-fluid">
+                <div class="ui-g-12 ui-md-6">
+                    <app-search-input [type]="'date'" label="{{'cpm.registDt' | translate}}" [(ngModel)]="searchCodition['registDt']"></app-search-input>
+                </div>
+                <div class="ui-g-12 ui-md-6">
+                    <app-search-input [type]="'code'" label="{{'cpm.counterpartyCd' | translate}}" [(ngModel)]="searchCodition['counterpartyHelp']" [operatorGroup]="operatorGroup"></app-search-input>
+                </div>
+            </div>
+        </p-fieldset>        
+        
+        <p-dataTable [value]="searchResult" [lazy]="true" [rows]="searchPageSize" [paginator]="true" [rowsPerPageOptions]="searchRowsPerPageOptions"
+                [totalRecords]="searchTotals" (onLazyLoad)="search($event)" (onRowDblclick)="showDetails($event)">
+            <p-column field="counterpartyCd" header="{{'cpm.counterpartyCd' | translate}}">
+            </p-column>
+            <p-column field="counterpartyNm" header="{{'cpm.counterpartyNm' | translate}}"></p-column>
+            <p-column field="status" header="{{'cpm.status' | translate}}">
+                <ng-template let-data="rowData" pTemplate="type">
+                    {{ ('status.' + data.status) | translate}}
+                </ng-template>
+            </p-column>
+            <p-column field="notes" header="{{'cpm.note' | translate}}"></p-column>
+        </p-dataTable>
+    </p-tabPanel>
+    <p-tabPanel header="{{'tab.main' | translate}}">
+        <div class="ui-g ui-fluid">
+            <div class="ui-g-12 ui-md-6">
+                <div class="ui-inputgroup-main" appRequired>
+                    <span class="ui-inputgroup-label">{{'cpm.counterpartyCd' | translate}}</span>
+                    <input type="text" pInputText name="counterpartyCd" [(ngModel)]="entityData.counterpartyCd"/>
+                </div>
+            </div>
+            <div class="ui-g-12 ui-md-6">
+                <div class="ui-inputgroup-main" appRequired>
+                    <span class="ui-inputgroup-label">{{'cpm.counterpartyNm' | translate}}</span>
+                    <input type="text" pInputText name="counterpartyNm" [(ngModel)]="entityData.counterpartyNm"/>
+                </div>
+            </div>
+        </div>
+        <div class="ui-g ui-fluid">
+            <div class="ui-g-12 ui-md-6">
+                <div class="ui-inputgroup-main">
+                    <span class="ui-inputgroup-label">{{'cpm.status' | translate}}</span>
+                    <app-combobox [dataProvider]="status" [(ngModel)]="entityData.status" (change)="statusChange($event)"></app-combobox>
+                </div>
+            </div>
+            <div class="ui-g-12 ui-md-6" *ngIf="show">
+                <div class="ui-inputgroup-main">
+                    <span class="ui-inputgroup-label">{{'cpm.amount' | translate}}</span>
+                    <app-amount-input [(ngModel)]="entityData.amount" (formatChinese)="formatChineseAmount($event)"></app-amount-input>
+                    <span>{{entityData['formatAmt']}}</span>
+                </div>                
+            </div>            
+        </div>
+        <div class="ui-g ui-fluid">
+            <div class="ui-g-12 ui-md-6">
+                <div class="ui-inputgroup-main" appRequired>
+                    <span class="ui-inputgroup-label">{{'cpm.registDt' | translate}}</span>
+                    <app-date-input [(ngModel)]="entityData.registDt"></app-date-input>
+                </div>
+            </div>
+            <div class="ui-g-12 ui-md-6">
+                <div class="ui-inputgroup-main" appRequired>
+                    <span class="ui-inputgroup-label">{{'cpm.type' | translate}}</span>
+
+                    <app-autocomplete [url]="hangyeUrl" [(ngModel)]="entityData.hangyeObj" [field]="'label'" ></app-autocomplete>
+                </div>
+            </div>
+        </div>
+        <div class="ui-g ui-fluid">
+            <div class="ui-g-12 ui-md-6">
+                <div class="ui-inputgroup-main" appRequired>
+                    <span class="ui-inputgroup-label">{{'cpm.rate' | translate}}</span>
+                    <app-rate-input></app-rate-input>
+                </div>
+            </div>
+        </div>
+        
+    </p-tabPanel>
+    <p-tabPanel header="{{'tab.attach' | translate}}">
+        <p-fileUpload name="demo[]" url="./upload.php" (onUpload)="onUpload($event)" 
+            multiple="multiple" accept="application/*" maxFileSize="1000000" chooseLabel="选择" uploadLabel="上传" cancelLabel="取消">
+        <ng-template pTemplate="content">
+            <ul *ngIf="uploadedFiles.length">
+                <li *ngFor="let file of uploadedFiles">{{file.name}} - {{file.size}} bytes</li>
+            </ul>
+        </ng-template>        
+    </p-fileUpload>
+    </p-tabPanel>
+</p-tabView>

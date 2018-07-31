@@ -1,0 +1,65 @@
+{
+    "app":{
+        "title":"Login",
+        "index":"Home"
+    },
+    "login":{
+        "title":"User Login",
+        "username":"user name",
+        "password":"password",
+        "login":"login"
+    },
+    "tab":{
+        "main":"main",
+        "search":"search",
+        "search-condition":"search condition",
+        "attach":"attach"
+    },
+    "search":{
+        "select":"select...",
+        "equal":"equal",
+        "not-equal":"not equal",
+        "greater":"greater",
+        "greater-equal":"greater equal",
+        "less":"less",
+        "less-equal":"less equal",
+        "like":"like",
+        "start-with":"start with",
+        "end-with":"end with",
+        "between":"between",
+        "is-null":"is null"
+    },
+    "button":{
+        "save":"save",
+        "submit":"submit",
+        "save-submit":"save & submit",
+        "check":"check",
+        "inquire":"inquire",
+        "select":"select",
+        "upload":"upload",
+        "cancel":"cancel"
+    },
+    "msg":{
+        "success":"success",
+        "error":"error",
+        "info":"info",
+        "warn":"warn"
+    },
+    "index":{
+        "title":"Home"
+    },
+    "cpm":{
+        "cpmcp-insert":"counterparty insert",
+        "cpmcp-update":"counterparty update",
+        "cpmcp-check":"counterparty check",
+        "cpmcp-inquire":"counterparty inquire",
+        "counterpartyCd":"counterparty code",
+        "counterpartyNm":"counterparty name",
+        "status":"status",
+        "amount":"amount",
+        "registDt":"regist date",
+        "note":"note",
+        "type":"type",
+        "rate":"rate"
+    }
+}

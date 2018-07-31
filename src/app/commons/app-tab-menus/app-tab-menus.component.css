@@ -1,0 +1,46 @@
+.app-tab-menus-wrap{
+    border-bottom: 2px solid #D5D5D5;
+    padding-bottom: 6px;
+    margin-bottom: 6px;
+    margin-right: 3px;
+}
+.app-tab-menus{
+    position: relative;
+    margin-right: 0px;
+    padding: 0px;
+    flex-grow: 1;
+}
+.app-tab-menus ul{
+    white-space:nowrap;
+    overflow:hidden;
+    -webkit-padding-start:0px;
+    width: auto;
+    margin-bottom: 0px;
+}
+.app-tab-menus-item{
+    height:30px;
+    margin-left: 3px;
+    margin-right: 3px;
+    background:#f1f0f0;
+    display:inline-block;
+    padding: 3px;
+    border-top-left-radius:3px;
+    border-top-right-radius:3px;
+    cursor: pointer;
+}
+.active{
+    color: white;
+    background:#2399e5;
+}
+.scroll-button-left{
+    padding-right: 3px;
+    float: left;
+}
+.scroll-button-right{
+    padding-left: 3px;
+    float: right;
+}
+.z-index-10{
+    z-index: 10;
+}
+

@@ -1,0 +1,18 @@
+<div class="app-tab-menus-wrap" >
+    <div *ngIf="showPre" class="scroll-button-left">
+        <button pButton icon="fa fa-angle-left" (click)="next()" class="z-index-10"></button>
+    </div>
+
+    <div *ngIf="showNext" class="scroll-button-right">
+        <button pButton icon="fa fa-angle-right" (click)="pre()" class="z-index-10"></button>
+    </div>
+
+    <div class="app-tab-menus">
+        <ul #tabs>
+            <li *ngFor="let tab of tabCollection" (click)="onTabClick(tab)" class="app-tab-menus-item" [ngClass]="{'active':tab.active}">
+              {{tab.title | translate}}
+              <span class="fa fa-times" (click)="closeTab(tab)"></span>
+            </li>
+        </ul>
+    </div>    
+</div>

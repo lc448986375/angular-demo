@@ -1,0 +1,40 @@
+#layout-toobar{
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    z-index: 98;
+}
+#layout-siderbar{
+    position: fixed;
+    top: 70px;
+    bottom: 0px;
+    left:5px;
+    height: calc(100% - 70px);
+    width: 290px;
+    overflow-y: auto;
+}
+@media screen and (max-width: 64em){
+    #layout-siderbar{
+        left: -300px;
+        transition: left .3s;
+        z-index: 999;
+    }
+}
+#layout-siderbar.active{
+    left: 0px;
+}
+
+#layout-content{
+    margin-left: 300px;
+    padding-top: 70px;
+}
+@media screen and (max-width: 64em){
+    #layout-content{
+        margin-left: 0px;
+        padding-top: 70px;
+    }
+}
+
+.spacer{
+    flex: 1 1 auto;
+}

@@ -1,0 +1,36 @@
+.login-wrap{
+    width: 350px;
+    height: 300px;
+    margin: auto;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #efefef;
+    border-radius:18px;
+    -moz-border-radius:18px; /* Old Firefox */
+}
+.login-form {
+    width: 300px;
+    height: 270px;
+    margin: auto;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    display: flex;
+    flex-direction: column;
+}
+
+.login-header{
+    font-size: 20px;
+    text-align: center;
+    font-weight: bold;
+}
+
+.lang-select{
+    margin-top: 10px;
+}

@@ -1,1 +1,79 @@
 /* You can add global styles to this file, and also import other style files */
+@import 'assets/styles/css/bootstrap.min.css';
+
+body{
+    margin: 0px;
+}
+
+/*输入框标签*/
+.ui-inputgroup-label{
+    width: auto;
+    white-space:nowrap;
+    line-height: 32px;
+    font-weight: bold;
+    padding-right: 8px;
+
+    min-width: 110px;
+    overflow: hidden;
+    text-overflow:ellipsis;
+}
+/*输入框标签必填-标签前*/
+.ui-inputgroup-label-required-P{
+    width: auto;
+    white-space:nowrap;
+    line-height: 32px;
+    font-weight: bold;
+    padding-right: 8px;
+
+    min-width: 100px;
+    overflow: hidden;
+    text-overflow:ellipsis;
+}
+@media screen and (max-width: 64em){
+    .ui-inputgroup-label{
+        font-weight: normal;
+        line-height: 32px;
+        padding-right: 3px;
+
+        min-width: 80px;
+        overflow: hidden;
+        text-overflow:ellipsis;
+    }
+    /*输入框标签必填-标签前*/
+    .ui-inputgroup-label-required-P{
+        font-weight: normal;
+        line-height: 32px;
+        padding-right: 3px;
+
+        min-width: 70px;
+        overflow: hidden;
+        text-overflow:ellipsis;
+    }
+}
+
+.ui-inputgroup-main{
+    display: flex;
+}
+.ui-inputgroup-main-required{
+    color: red;
+    line-height: 32px;
+    font-weight: bold;
+    text-align: center;
+    min-width: 10px;
+}
+
+/*
+ * 查询页面查询条件
+*/
+.search-condition .ui-fieldset-legend{
+    width: auto;
+    font-size: 1em;
+}
+
+/*帮助框*/
+.ui-fluid app-autocomplete{
+    width:100%;
+}
+.ui-fluid app-autocomplete .ui-autocomplete .ui-autocomplete-dropdown{
+    height: 34px;
+}

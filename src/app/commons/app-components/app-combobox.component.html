@@ -1,0 +1,8 @@
+<p-dropdown [options]="dataProvider" [(ngModel)]="value" [style]="style" [disabled]="disabled">
+    <ng-template let-item pTemplate="selectedItem"> 
+        <span>{{item.label | translate}}</span>
+    </ng-template>
+    <ng-template let-item pTemplate="item"> 
+        <span>{{item.label | translate}}</span>
+    </ng-template> 
+</p-dropdown>

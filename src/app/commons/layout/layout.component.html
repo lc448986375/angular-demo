@@ -1,0 +1,25 @@
+<mat-toolbar id="layout-toobar">
+    <span class="fa fa-fw fa-list d-md-none" (click)="showMenu()"></span>  
+    <span class="d-none d-md-block">My Application</span>
+    <span class="spacer"></span>
+    <div style="font-size: 15px;margin-right: 5px;padding: 10px 0px 10px 0px">
+        <div>
+            {{'login.username' | translate}} : {{user.user_name}}
+        </div>
+        <div>
+            {{'login.dept' | translate}} : 部门部门部门
+        </div>
+    </div>
+    <button pButton type="button" icon="fa fa-fw fa-sign-out" iconPos="center" class="ui-button-danger" p-b (click)="logout()"></button>
+    <app-combobox [dataProvider]="langs" (change)="changeLang($event)" [value]="selectedLang" [style]="{'width':'120px'}"></app-combobox>
+</mat-toolbar>
+
+<div id="layout-siderbar" [ngClass]="{'active':sidebarActive}">
+    <p-panelMenu [model]="items" [style]="{'width':'100%', 'height':'100%'}" [multiple]="false"></p-panelMenu>
+</div>
+
+<div id="layout-content">
+    <app-app-tab-menus></app-app-tab-menus>
+
+    <router-outlet></router-outlet>
+</div>

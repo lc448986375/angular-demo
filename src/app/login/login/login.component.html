@@ -1,0 +1,19 @@
+<div class="login-container">
+  <div class="login-wrap">
+    <div class="login-form">
+      <div class="login-header">{{'login.title' | translate}}</div>
+      <mat-form-field>
+        <input matInput placeholder="{{'login.username' | translate}}" [(ngModel)]="userName" (keyup.enter)="login()">
+      </mat-form-field>
+
+      <mat-form-field>
+          <input matInput placeholder="{{'login.password' | translate}}" type="password" [(ngModel)]="password" (keyup.enter)="login()">
+      </mat-form-field>
+
+      <button mat-raised-button color="primary" (click)="login()">{{'login.login' | translate}}</button>
+      <div class="lang-select">
+        <app-combobox [dataProvider]="langs" (change)="langsChange($event)"  [style]="{'float':'right', 'width':'100px'}" [value]="selectLang"></app-combobox>
+      </div>
+    </div>
+  </div>
+</div>

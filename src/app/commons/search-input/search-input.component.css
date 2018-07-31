@@ -1,0 +1,14 @@
+/*
+.label{
+    min-width: 100px;
+    overflow: hidden;
+    text-overflow:ellipsis;
+}
+@media screen and (max-width: 64em){
+    .label{
+        min-width: 70px;
+        overflow: hidden;
+        text-overflow:ellipsis;
+    }
+}
+*/
