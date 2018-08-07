@@ -4,3 +4,4 @@
 -->
 <ngx-loading [show]="loadingService.loading" [config]="{ backdropBorderRadius: '14px' }"></ngx-loading>
 <p-growl [(value)]="msgService.msgs"></p-growl>
+<p-confirmDialog header="{{'confirm.header' | translate}}" icon="pi pi-exclamation-triangle" width="425" acceptLabel="{{'confirm.yes' | translate}}" rejectLabel="{{'confirm.no' | translate}}"></p-confirmDialog>

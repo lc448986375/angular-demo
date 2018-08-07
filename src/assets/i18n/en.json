@@ -3,6 +3,11 @@
         "title":"Login",
         "index":"Home"
     },
+    "confirm":{
+        "header":"Confirmation",
+        "yes":"Yes",
+        "no":"No"
+    },
     "login":{
         "title":"User Login",
         "username":"user name",

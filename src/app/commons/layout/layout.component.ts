@@ -4,7 +4,7 @@
  * @Email: i@liuchang.org 
  * @Date: 2018-05-25 13:27:11 
  * @Last Modified by: chang.liu
- * @Last Modified time: 2018-07-02 14:00:32
+ * @Last Modified time: 2018-07-31 17:54:13
  */
 import { OnInit, Component, ViewChild, ElementRef } from '@angular/core';
 import { MenuItem } from 'primeng/api';
@@ -65,7 +65,8 @@ export class LayoutComponent implements OnInit {
             {
                 label:'首页',
                 icon:'fa-home',
-                routerLink:'index'
+                routerLink:'index',
+                title:'首页'
             },{
                 label:'客户管理',
                 icon:'fa-user',

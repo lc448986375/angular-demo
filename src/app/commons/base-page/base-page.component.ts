@@ -4,16 +4,17 @@
  * @Email: i@liuchang.org 
  * @Date: 2018-05-25 13:22:47 
  * @Last Modified by: chang.liu
- * @Last Modified time: 2018-07-31 16:10:38
+ * @Last Modified time: 2018-08-06 15:17:26
  */
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { LazyLoadEvent } from 'primeng/api';
+import { LazyLoadEvent, ConfirmationService } from 'primeng/api';
 import { HttpService } from '../app-services/http-service';
 import { MessageService } from '../app-services/message-service';
 import { SearchBean } from '../search-input/search-bean';
 import { LogService } from '../app-services/log-service';
 import { TokenService } from '../app-services/token-service';
+import { GlobalVariable } from '../config/global-variable';
 
 @Component({
   selector: 'app-base-page',
@@ -34,12 +35,13 @@ export class BasePageComponent implements OnInit {
   // 查询参数
   public searchUrl:string = "";
   public searchCodition:Object = {}; // 查询条件
-  public searchPageSize:number = 50; // 分页大小
+  public searchPageSize:number = 10; // 分页大小
   public searchPage:number = 0; // 当前页码
+  public searchPageFirst:number = 0; // 显示的数据第一条下标
   public searchPages:number = 0; // 总页数
   public searchTotals:number = 0; // 总记录条数
   public searchNext:boolean = false; // 是否有下一页
-  public searchRowsPerPageOptions:Array<number> = [50, 100, 200];// 修改分页大小
+  public searchRowsPerPageOptions:Array<number> = [10, 50, 100, 200];// 修改分页大小
   public searchResult:Array<any> = []; // 查询结果
 
   private serachParams:SearchBean = new SearchBean(); // 过滤、分页、排序，查询条件
@@ -59,7 +61,7 @@ export class BasePageComponent implements OnInit {
   public entityData:object = {}; // 存储保存数据
   public saveType:string = "save"; // 保存类型。save:保存，submit 保存并提交
 
-  constructor(protected http:HttpService, protected activatedRoute:ActivatedRoute, protected msgService:MessageService, protected log:LogService, protected tokenService:TokenService) { }
+  constructor(protected http:HttpService, protected activatedRoute:ActivatedRoute, protected msgService:MessageService, protected log:LogService, protected tokenService:TokenService, protected confirmationService: ConfirmationService) { }
 
   ngOnInit() {
     let routerData = this.activatedRoute.data['value'];
@@ -102,18 +104,28 @@ export class BasePageComponent implements OnInit {
 
   search(event: LazyLoadEvent = null){
     // 延迟调用查询
-    setTimeout(() => {  
+    setTimeout(() => {
       this.buildSearch(event);
       this.beforeSearch();
+
+      let params = {};
+      if(GlobalVariable.PAGE_SEARCH_PAGE_USE_PARAMS){
+        params[GlobalVariable.PAGE_SEARCH_PAGE] = this.serachParams[GlobalVariable.PAGE_SEARCH_PAGE];
+      }
+      if(GlobalVariable.PAGE_SEARCH_PAGE_SIZE_USER_PARAMS){
+        params[GlobalVariable.PAGE_SEARCH_PAGE_SIZE] = this.serachParams[GlobalVariable.PAGE_SEARCH_PAGE_SIZE];
+      }
+
       this.http.post(this.searchUrl, {
-        data:this.serachParams
+        data:this.serachParams,
+        params:params
       }, res => {
         this.searchFieldSetCollapsed = true;
 
-        this.searchResult = res['records'];
-        this.searchPage = res['page']; 
-        this.searchPages = res['pages'];
-        this.searchTotals = res['totals'];
+        this.searchResult = res[GlobalVariable.PAGE_RESULT_RECORDS];
+        this.searchPage = res[GlobalVariable.PAGE_RESULT_PAGE];
+        this.searchPages = res[GlobalVariable.PAGE_RESULT_PAGES];
+        this.searchTotals = res[GlobalVariable.PAGE_RESULT_TOTAL];
       });
     }, 10);
   }
@@ -152,6 +164,15 @@ export class BasePageComponent implements OnInit {
   }
 
   save(event:string){
+    this.confirmationService.confirm({
+      message: '确认保存?',
+      accept: () => {
+          this.confirmSave();
+      }
+    });
+  }
+
+  confirmSave(){
     this.beforeSave();
     this.http.post(this.saveUrl, {
       data:this.entityData
@@ -160,6 +181,8 @@ export class BasePageComponent implements OnInit {
       this.afterSave();
     });
   }
+
+  
   afterSave(){
     this.afterSaveClear()
   }
@@ -195,16 +218,21 @@ export class BasePageComponent implements OnInit {
 
   // 构造查询参数
   private buildSearch(filterOrder:object){
+    console.log(filterOrder);
     let filetrs = null, 
         page = 1, 
+        first = 0,
         pageSize = this.searchPageSize,
         sort = '';
     // 不为空，则是由grid发起查询
     if(filterOrder != null){
       filetrs = filterOrder['filetrs'];
-      page = filterOrder['first'];
+      first = filterOrder['first'];
       pageSize = filterOrder['rows'];
+      page = first / pageSize + 1;
       sort = filterOrder['sort'];
+    }else{
+      this.searchPageFirst = 0;
     }
     /*
     this.serachParams = {
@@ -225,8 +253,8 @@ export class BasePageComponent implements OnInit {
       }
     });
     
-    this.serachParams.page = page;
-    this.serachParams.pageSize = pageSize;
+    this.serachParams[GlobalVariable.PAGE_SEARCH_PAGE] = page;
+    this.serachParams[GlobalVariable.PAGE_SEARCH_PAGE_SIZE] = pageSize;
     this.serachParams.sort = sort;
   }
 }

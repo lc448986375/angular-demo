@@ -16,6 +16,7 @@ import { AuthService } from './commons/app-services/auth-service';
 import { LogService } from './commons/app-services/log-service';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TokenService } from './commons/app-services/token-service';
+import { ConfirmationService } from '../../node_modules/primeng/api';
 
 // 为AOT准备
 export function createTranslateLoader(http: HttpClient) {
@@ -37,7 +38,7 @@ export function createTranslateLoader(http: HttpClient) {
     })
   ],
   providers: [{ provide: RouteReuseStrategy, useClass: CustomReuseStrategy },
-    HttpService, MessageService, LoadingService, AuthGuard, AuthService, LogService, TokenService],
+    HttpService, MessageService, LoadingService, AuthGuard, AuthService, LogService, TokenService, ConfirmationService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

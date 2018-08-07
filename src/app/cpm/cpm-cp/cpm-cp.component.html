@@ -27,8 +27,7 @@
                 </div>
             </div>
         </p-fieldset>        
-        
-        <p-dataTable [value]="searchResult" [lazy]="true" [rows]="searchPageSize" [paginator]="true" [rowsPerPageOptions]="searchRowsPerPageOptions"
+        <p-dataTable [value]="searchResult" [lazy]="true" [rows]="searchPageSize" [paginator]="true" [first]="searchPageFirst" [rowsPerPageOptions]="searchRowsPerPageOptions"
                 [totalRecords]="searchTotals" (onLazyLoad)="search($event)" (onRowDblclick)="showDetails($event)">
             <p-column field="counterpartyCd" header="{{'cpm.counterpartyCd' | translate}}">
             </p-column>
@@ -59,8 +58,16 @@
         <div class="ui-g ui-fluid">
             <div class="ui-g-12 ui-md-6">
                 <div class="ui-inputgroup-main">
+                    <span class="ui-inputgroup-label">{{'cpm.counterpartyShortNm' | translate}}</span>
+                    <input type="text" pInputText name="counterpartyShortNm" [(ngModel)]="entityData.counterpartyShortNm"/>
+                </div>
+            </div>
+        </div>
+        <div class="ui-g ui-fluid">
+            <div class="ui-g-12 ui-md-6">
+                <div class="ui-inputgroup-main">
                     <span class="ui-inputgroup-label">{{'cpm.status' | translate}}</span>
-                    <app-combobox [dataProvider]="status" [(ngModel)]="entityData.status" (change)="statusChange($event)"></app-combobox>
+                    <app-combobox [dataProvider]="status" [(ngModel)]="entityData.counterpartyStatus" (change)="statusChange($event)"></app-combobox>
                 </div>
             </div>
             <div class="ui-g-12 ui-md-6" *ngIf="show">
@@ -75,7 +82,7 @@
             <div class="ui-g-12 ui-md-6">
                 <div class="ui-inputgroup-main" appRequired>
                     <span class="ui-inputgroup-label">{{'cpm.registDt' | translate}}</span>
-                    <app-date-input [(ngModel)]="entityData.registDt"></app-date-input>
+                    <app-date-input></app-date-input>
                 </div>
             </div>
             <div class="ui-g-12 ui-md-6">

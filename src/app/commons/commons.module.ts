@@ -4,7 +4,7 @@
  * @Email: i@liuchang.org 
  * @Date: 2018-06-06 11:32:17 
  * @Last Modified by: chang.liu
- * @Last Modified time: 2018-06-26 14:27:26
+ * @Last Modified time: 2018-08-06 15:14:51
  */
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -33,11 +33,14 @@ import { TabMenuModule } from 'primeng/tabmenu';
 import { InputTextModule } from 'primeng/inputtext';
 import { DropdownModule } from 'primeng/dropdown';
 import { DataTableModule } from 'primeng/datatable';
+import { TableModule } from 'primeng/table';
 import { FieldsetModule } from 'primeng/fieldset';
 import { GrowlModule } from 'primeng/growl';
 import { AutoCompleteModule } from 'primeng/autocomplete';
 import { CalendarModule } from 'primeng/calendar';
 import { FileUploadModule } from 'primeng/fileupload';
+import { CheckboxModule } from 'primeng/checkbox';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
 
 // 自定义组件
 import { LayoutComponent } from './layout/layout.component';
@@ -56,10 +59,10 @@ import { RequiredDirective } from './directives/required';
 
 @NgModule({
   imports: [
-    CommonModule, FlexLayoutModule, FormsModule, LoadingModule, MatToolbarModule, MatSidenavModule, MatFormFieldModule, MatInputModule, MatButtonModule, ToolbarModule, PanelMenuModule, ButtonModule, SidebarModule, InputTextModule, ScrollPanelModule, PanelModule, TabMenuModule, MenubarModule, DropdownModule, DataTableModule, FieldsetModule, GrowlModule, AutoCompleteModule, CalendarModule, FileUploadModule, TranslateModule
+    CommonModule, FlexLayoutModule, FormsModule, LoadingModule, MatToolbarModule, MatSidenavModule, MatFormFieldModule, MatInputModule, MatButtonModule, ToolbarModule, PanelMenuModule, ButtonModule, SidebarModule, InputTextModule, ScrollPanelModule, PanelModule, TabMenuModule, MenubarModule, DropdownModule, DataTableModule, FieldsetModule, GrowlModule, AutoCompleteModule, CalendarModule, FileUploadModule, TranslateModule, CheckboxModule, TableModule, ConfirmDialogModule
   ],
   declarations: [LayoutComponent, AppTabMenusComponent, BasePageComponent, BasePageToolbarComponent, SearchInputComponent, AppAmountInput, AppAutocomplete, AppDateInput, AppComboBox, RequiredDirective, AppRateInput
   ],
-  exports:[LayoutComponent, MatFormFieldModule, MatInputModule, MatButtonModule, FormsModule, LoadingModule, BasePageToolbarComponent, TabViewModule, InputTextModule, DropdownModule, SearchInputComponent, AppAmountInput, DataTableModule, FieldsetModule, GrowlModule, AutoCompleteModule, AppAutocomplete, CalendarModule, AppDateInput, AppComboBox, FileUploadModule, RequiredDirective, AppRateInput, TranslateModule]
+  exports:[LayoutComponent, MatFormFieldModule, MatInputModule, MatButtonModule, FormsModule, LoadingModule, BasePageToolbarComponent, TabViewModule, InputTextModule, DropdownModule, SearchInputComponent, AppAmountInput, DataTableModule, FieldsetModule, GrowlModule, AutoCompleteModule, AppAutocomplete, CalendarModule, AppDateInput, AppComboBox, FileUploadModule, RequiredDirective, AppRateInput, TranslateModule, CheckboxModule, TableModule, ConfirmDialogModule]
 })
 export class CommonsModule { }

@@ -3,6 +3,11 @@
         "title":"登陆",
         "index":"首页"
     },
+    "confirm":{
+        "header":"操作确认",
+        "yes":"确认",
+        "no":"取消"
+    },
     "login":{
         "title":"用户登陆",
         "username":"用户名",
@@ -58,6 +63,7 @@
         "cpmcp-inquire":"客户管理-查询",
         "counterpartyCd":"客户编码",
         "counterpartyNm":"客户名称",
+        "counterpartyShortNm":"客户简称",
         "status":"状态",
         "amount":"注册资本",
         "registDt":"注册时间",
