@@ -19,7 +19,9 @@ export const GlobalVariable = Object.freeze({
     LANGUAGES_DEFAULT:"zh-CN",    // 默认语言
     API_LOGIN:"/uaa/oauth/token", // 登录
     //API_LOGIN:"/api-b/login", // 登录
-    API_LOGOUT:"/uaa/oauth/logout", // 退出
+    API_LOGOUT:"/uaa/oauth/token", // 退出
+    API_LOGOUT_METHOD:"DELETE", // 退出http方法
+    API_LOGOUT_DATA_KEY:"body", // 传递token方式 data:在url中传递/body:在body传递
     //API_LOGOUT:"/api-b/logout", // 退出
     TOKEN_USE_JWT:false, // token是否使用jwt
     TOKEN_API_HEADER_USE_FORM:true, // 获取token请求头content-type类型

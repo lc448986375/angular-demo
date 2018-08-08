@@ -58,7 +58,13 @@ export class AuthService {
   }
 
   logout(): void {
-    this.httpService.post(GlobalVariable.BASE_API_URL + GlobalVariable.VERSION + GlobalVariable.API_LOGOUT, {}, () => {
+    let config = {};
+    config['type'] = GlobalVariable.API_LOGOUT_METHOD;
+    config[GlobalVariable.API_LOGOUT_DATA_KEY] = {
+        access_token:this.token.getToken()
+    };
+
+    this.httpService.ajax(GlobalVariable.BASE_API_URL + GlobalVariable.VERSION + GlobalVariable.API_LOGOUT, config, () => {
       this.token.setToken(null);
       // 跳转到登陆页面
       this.router.navigate(['/login']);

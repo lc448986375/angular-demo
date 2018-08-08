@@ -106,6 +106,9 @@ export class HttpService{
         if(config['params']){
             options['params'] = config['params'];
         }
+        if(config['body']){
+            options['body'] = config['body'];
+        }
 
         let observable:Observable<Object> = this.request(url, type, data, options);
 
